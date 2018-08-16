@@ -1,2 +1,2 @@
 # R-Basics
-Data Analysis Basic in R
+Basic Data Analysis in R
