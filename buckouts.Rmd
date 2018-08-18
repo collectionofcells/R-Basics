@@ -1,0 +1,49 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+We will look at technique to find relation and correlation between 2 variables. 
+The correlation coefficient is only able to tell if there exists a linear relationship,
+so we need to visualize the data so we don't miss non-linear relationships 
+Copying the DataFrame in to a conveniently named one
+library(SDSFoundations)
+```{r}
+library(SDSFoundations)
+bulls <- BullRiders
+```
+Creating a scatterplot between variables we wish to examine
+```{r}
+plot(bulls$YearsPro,bulls$BuckOuts14, ylab='Buckouts',xlab = 'Years Pro', main= 'Years Vs Buckouts')
+```
+The dots are all over the place and the relation is not looking linear, let us confirm by tracing a line
+```{r}
+plot(bulls$YearsPro,bulls$BuckOuts14, ylab='Buckouts',xlab = 'Years Pro', main= 'Years Vs Buckouts')+
+abline(lm(bulls$YearsPro~bulls$BuckOuts14))
+```
+We confirm that linear relationship doesn't exist, we expect the correlation coefficient to be poor.
+```{r}
+cor(bulls$YearsPro,bulls$BuckOuts14)
+```
+Let us try the same with Events held in 2014 and the respective Buckouts
+
+```{r}
+plot(bulls$Events14,bulls$BuckOuts14, ylab='Buckouts',xlab = 'Events', main= 'Events Vs Buckouts')
+```
+Very strong relationship can be observed in scatterplot, let us confirm by calculation corr. coeff.
+```{r}
+plot(bulls$Events14,bulls$BuckOuts14, ylab='Buckouts',xlab = 'Events', main= 'Events Vs Buckouts')+abline(lm(bulls$BuckOuts14~bulls$Events14))
+```
+```{r}
+cor(bulls$Events14,bulls$BuckOuts14)
+```
+Build a nice little table for quick correlation infor between variables. Storing the variables of interest in a vector
+```{r}
+corvar <- c('YearsPro','Events14','BuckOuts14')
+```
+Calculating correlatin between them, rounded to 2 digits
+```{r}
+round(cor(bulls[,corvar]),2)
+```
+
+*This analysis can say that there is a strong linear relation between the participation of a rider at event and the number of BuckOuts*
