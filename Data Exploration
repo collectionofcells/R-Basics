@@ -1,7 +1,0 @@
-#Copying the DataFrame in to a conveniently named one
-bulls <- BullRiders
-View(bulls)
-
-#Creating a scatterplot between variables we wish to examine
-plot(bulls$YearsPro,bulls$BuckOuts14, ylab='Buckouts',xlab = 'Years Pro', main= 'Years Vs Buckouts')
-
